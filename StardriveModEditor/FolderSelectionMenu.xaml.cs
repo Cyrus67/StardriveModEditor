@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using Ookii.Dialogs.Wpf;
+using System.ComponentModel;
 
 namespace StardriveModEditor
 {
@@ -23,26 +24,42 @@ namespace StardriveModEditor
     /// </summary>
     public partial class FolderSelectionWindow : Window
     {
+        private VistaFolderBrowserDialog openModDialog;
+
+        public string _selectedModPath = "Test";
+        public string SelectedModPath { get => _selectedModPath; set { _selectedModPath = value; } }
+
+
         public FolderSelectionWindow()
         {
             InitializeComponent();
-            //
-            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog
+
+            //Init the dialog.
+            openModDialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog
             {
                 Description = "Choose mod directory:",
                 UseDescriptionForTitle = true
             };
+        }
+
+        private void OnBrowseButtonClicked(object sender, RoutedEventArgs e)
+        {
             //This call is blocking. Will have to use a thread to change that.
-            //string dialogResult;
-            //if ((bool)dialog.ShowDialog())
-            //{
-            //    dialogResult = dialog.SelectedPath;
-            //    Console.WriteLine(dialogResult);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Folder Selection Cancelled!");
-            //}
+            if ((bool)openModDialog.ShowDialog())
+            {
+                SelectedModPath = openModDialog.SelectedPath;
+                this.directoryTextBox.Text = SelectedModPath;
+                Console.WriteLine(SelectedModPath);
+            }
+            else
+            {
+                Console.WriteLine("Folder Selection Cancelled!");
+            }
+        }
+
+        private void OnOpenModButtonClicked(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Chosen Path: " + SelectedModPath);
         }
     }
 }

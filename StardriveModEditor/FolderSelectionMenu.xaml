@@ -5,12 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StardriveModEditor"
         mc:Ignorable="d"
-        Title="Folder Selection" Height="300" Width="600" Visibility="Visible"
+        Title="Mod Folder Selection" Height="325" Width="300" Visibility="Visible"
         Style="{StaticResource PrimaryWindowStyle}"
         >
 
-    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">Testy Test</TextBlock>
+    <Border Padding="10">
+        <StackPanel>
+            <Image Height="200" Source="/Resources/Test.jpg" Margin="10 0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
 
-    
-    
+                <Button Height="20" Grid.Column="0" Margin="10, 10, 5, 10" Content="Browse" Click="OnBrowseButtonClicked"/>
+                <TextBox Height="20" Grid.Column="1" Margin="5, 10, 10, 10" Name="directoryTextBox" Text="{Binding Path=SelectedModPath}"/>
+            </Grid>
+            <Button Height="20" Content="Open Mod Folder" Grid.Row="1" Margin="10 0" Click="OnOpenModButtonClicked" />
+        </StackPanel>
+    </Border>
+
+
+
 </Window>
