@@ -74,8 +74,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TestStuff\Extensions.cs" />
-    <Page Include="FolderSelectionMenu.xaml">
+    <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\ModProfile.cs" />
+    <Compile Include="Services\GameDirectoryExplorer.cs" />
+    <Compile Include="Services\XMLParsing\CustomDefaultValueAttribute.cs" />
+    <Compile Include="Services\XMLSerializer.cs" />
+    <Compile Include="Services\XMLParsing\CustomXMLIgnoreAttribute.cs" />
+    <Compile Include="Windows\ModBrowser.xaml.cs">
+      <DependentUpon>ModBrowser.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Windows\FolderSelectionMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -91,10 +99,14 @@
     <Compile Include="CustomWindowControls\WindowMaximizeCommand.cs" />
     <Compile Include="CustomWindowControls\WindowMinimizeCommand.cs" />
     <Compile Include="CustomWindowControls\WindowResizeBehavior.cs" />
-    <Compile Include="FolderSelectionMenu.xaml.cs">
+    <Compile Include="Windows\FolderSelectionMenu.xaml.cs">
       <DependentUpon>FolderSelectionMenu.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\ModBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

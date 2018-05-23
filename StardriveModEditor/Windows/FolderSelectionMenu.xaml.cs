@@ -22,15 +22,13 @@ namespace StardriveModEditor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class FolderSelectionWindow : Window
+    public partial class GameFolderSelectionWindow : Window
     {
         private VistaFolderBrowserDialog openModDialog;
-
-        public string _selectedModPath = "Test";
-        public string SelectedModPath { get => _selectedModPath; set { _selectedModPath = value; } }
+        public string SelectedModPath { get; set; }
 
 
-        public FolderSelectionWindow()
+        public GameFolderSelectionWindow()
         {
             InitializeComponent();
 
@@ -40,6 +38,21 @@ namespace StardriveModEditor
                 Description = "Choose mod directory:",
                 UseDescriptionForTitle = true
             };
+
+            SelectedModPath = Properties.Settings.Default.GameDirectoryPath;
+            Console.WriteLine();
+
+
+
+            //Setup the init to start as soon as the page is loaded.
+            this.Loaded += new RoutedEventHandler(PageLoaded);
+        }
+
+        //Init functions
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            //Add the data context so it knows what the hell you're talking about.
+            this.directoryTextBox.DataContext = this;
         }
 
         private void OnBrowseButtonClicked(object sender, RoutedEventArgs e)
@@ -57,9 +70,16 @@ namespace StardriveModEditor
             }
         }
 
-        private void OnOpenModButtonClicked(object sender, RoutedEventArgs e)
+        private void OnConfirmButtonClicked(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Chosen Path: " + SelectedModPath);
+
+            Properties.Settings.Default.GameDirectoryPath = SelectedModPath;
+            Properties.Settings.Default.Save();
+
+            ModBrowser modBrowser = new ModBrowser();
+            modBrowser.Show();
+            this.Close();
         }
     }
 }

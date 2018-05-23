@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+
+using StardriveModEditor.Models;
+using StardriveModEditor.Services;
 
 namespace StardriveModEditor
 {
@@ -13,9 +11,20 @@ namespace StardriveModEditor
     /// </summary>
     public partial class App : Application
     {
+        public static App Instance;
+
+        public static string GameDirectoryPath;
+
         public App()
         {
-            Console.WriteLine("Test");
+            Instance = this;
+        }
+
+        private void OnStart(object sender, StartupEventArgs e)
+        {
+            Window startingWindow = new ModBrowser();//new GameFolderSelectionWindow();//new ModBrowser();
+            startingWindow.Show();
+            
         }
     }
 }
