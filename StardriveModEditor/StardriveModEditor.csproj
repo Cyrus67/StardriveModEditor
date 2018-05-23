@@ -76,6 +76,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\ModProfile.cs" />
+    <Compile Include="Models\Technology.cs" />
     <Compile Include="Services\GameDirectoryExplorer.cs" />
     <Compile Include="Services\XMLParsing\CustomDefaultValueAttribute.cs" />
     <Compile Include="Services\XMLSerializer.cs" />
@@ -150,7 +151,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Models\ModelReadme.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Test.jpg" />
   </ItemGroup>

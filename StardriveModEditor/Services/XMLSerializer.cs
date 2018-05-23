@@ -34,6 +34,7 @@ namespace StardriveModEditor.Services
 
             foreach(PropertyInfo prop in (typeof(T)).GetProperties())
             {
+                //Check for the ignore attribute
                 if(prop.GetCustomAttribute<CustomXMLIgnoreAttribute>() != null)
                 {
                     Type propType = prop.PropertyType;
