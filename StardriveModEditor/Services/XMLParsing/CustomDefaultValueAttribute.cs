@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StardriveModEditor.Services.XMLParsing
 {
+    /// <summary>
+    /// A custom attribute to denote a user-defined default value for XML serialization.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     class CustomDefaultValueAttribute : Attribute
     {

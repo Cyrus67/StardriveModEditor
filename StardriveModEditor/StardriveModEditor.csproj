@@ -75,9 +75,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\ModConfiguration.cs" />
     <Compile Include="Models\ModProfile.cs" />
     <Compile Include="Models\Technology.cs" />
-    <Compile Include="Services\GameDirectoryExplorer.cs" />
+    <Compile Include="Services\DirectoryExplorer.cs" />
     <Compile Include="Services\XMLParsing\CustomDefaultValueAttribute.cs" />
     <Compile Include="Services\XMLSerializer.cs" />
     <Compile Include="Services\XMLParsing\CustomXMLIgnoreAttribute.cs" />

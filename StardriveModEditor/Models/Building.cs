@@ -17,6 +17,12 @@ namespace StardriveModEditor.Models
         public string Name { get; set; }
 
         public int Cost { get; set; }
+
+        /// <summary>
+        /// The Path to the building's XML file.
+        /// </summary>
+        [XmlIgnore]
+        public string Path { get; set; }
         #endregion
 
         #region Resource Properties

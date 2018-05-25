@@ -1,12 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using StardriveModEditor.Services;
 
 namespace StardriveModEditor.Models
 {
-    class ModProfile
+    public class ModProfile
     {
+        public ModConfiguration configuration;
+
+        public readonly string DirectoryPath;
+
+        public ModProfile(string configurationPath, string directoryPath)
+        {
+            configuration = XMLSerializer.Deserialize<ModConfiguration>(configurationPath);
+            configuration.Path = configurationPath;
+            DirectoryPath = directoryPath;
+        }
     }
 }
