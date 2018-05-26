@@ -6,14 +6,14 @@ namespace StardriveModEditor.Models
 {
     public class ModProfile
     {
-        public ModConfiguration configuration;
+        public ModConfiguration Configuration { get; set; }
 
-        public readonly string DirectoryPath;
+        public string DirectoryPath { get; private set; }
 
         public ModProfile(string configurationPath, string directoryPath)
         {
-            configuration = XMLSerializer.Deserialize<ModConfiguration>(configurationPath);
-            configuration.Path = configurationPath;
+            Configuration = XMLSerializer.Deserialize<ModConfiguration>(configurationPath);
+            Configuration.Path = configurationPath;
             DirectoryPath = directoryPath;
         }
     }

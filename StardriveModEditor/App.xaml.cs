@@ -13,8 +13,6 @@ namespace StardriveModEditor
     {
         public static App Instance;
 
-        public static string GameDirectoryPath;
-
         public App()
         {
             Instance = this;
@@ -22,7 +20,7 @@ namespace StardriveModEditor
 
         private void OnStart(object sender, StartupEventArgs e)
         {
-            Window startingWindow = new ModBrowser();//new GameFolderSelectionWindow();//new ModBrowser();
+            Window startingWindow = new ModBrowser();
             startingWindow.Show();
             
         }
