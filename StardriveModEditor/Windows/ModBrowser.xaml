@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StardriveModEditor"
         mc:Ignorable="d"
-        Title="Mod Browser" MinWidth="500" MinHeight="300" Height="389.07" Width="539.2"
-        Style="{StaticResource ResizableWindowStyle}">
+        Title="Mod Browser" MinWidth="500" MinHeight="300" Height="400" Width="540"
+        Style="{DynamicResource ResizableWindowStyle}">
 
-    <Grid Name="ModViewer">
+    <Grid>
         <!--This is the directory path field-->
         <StackPanel>
             <Border Padding="10 5" Background="{StaticResource SecondaryBackgroundBrush}">
@@ -31,8 +31,8 @@
                 </Grid>
             </Border>
         </StackPanel>
+        
         <!--This is the actual mod profile displays-->
-
         <ItemsControl Margin="0 30 0 0" ItemsSource="{Binding ModProfiles}" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -45,7 +45,7 @@
 
                             <Image Grid.Column="0" HorizontalAlignment="Left" MaxHeight="120" Width="150" Source="/Resources/Test.jpg" />
                             <StackPanel Grid.Column="1" Margin="15 15 35 15">
-                                <TextBlock Text="{Binding Profile.Configuration.ModName}" FontSize="14" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow" />
+                                <TextBlock Text="{Binding Profile.Configuration.ModName}" Style="{StaticResource TitleTextBlockStyle}" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow" />
                                 <TextBlock Text="{Binding Profile.Configuration.ModDescription}" TextTrimming="WordEllipsis" TextWrapping="WrapWithOverflow" />
                             </StackPanel>
                         </Grid>

@@ -68,6 +68,7 @@ namespace StardriveModEditor.Services
             }
 
             XmlSerializer serializer = new XmlSerializer(typeof(T), overrides);
+
             //Write it.
             using (TextWriter writer = new StreamWriter(pathToWrite))
             {

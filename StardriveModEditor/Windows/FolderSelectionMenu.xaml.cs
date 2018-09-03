@@ -19,9 +19,6 @@ using System.ComponentModel;
 
 namespace StardriveModEditor
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class GameFolderSelectionWindow : Window
     {
         private VistaFolderBrowserDialog openModDialog;

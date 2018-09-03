@@ -6,14 +6,15 @@ using StardriveModEditor.Services.XMLParsing;
 namespace StardriveModEditor.Models
 {
     //For any elements that are named differently than a property here
-    //Use [XmlElement("ElementName")] as an attrib
+    //  use [XmlElement("ElementName")] as an attrib
     //For properties that may not have values, use [CustomXMLIgnoreAttribute] to have it parse
     //  only if its value is not equal to the default value of its type.
+
     //[XmlRoot("Building")] use if root name is different from class name.
     public class Building
     {
         #region Basic Properties
-        //[XmlElement("")]
+
         public string Name { get; set; }
 
         public int Cost { get; set; }

@@ -10,12 +10,15 @@ namespace StardriveModEditor
     /// </summary>
     public partial class ModBrowser : Window
     {
+        public static ModBrowser Instance;
+
         public ModBrowser()
         {
+            Instance = this;
+
             InitializeComponent();
 
-
-            ModViewer.DataContext = new ModBrowserViewModel();
+            this.DataContext = new ModBrowserViewModel();
         }
     }
 }

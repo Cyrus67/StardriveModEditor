@@ -22,7 +22,6 @@ namespace StardriveModEditor
         {
             Window startingWindow = new ModBrowser();
             startingWindow.Show();
-            
         }
     }
 }

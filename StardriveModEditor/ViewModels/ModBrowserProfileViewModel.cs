@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using StardriveModEditor.Models;
+using StardriveModEditor.Windows;
 
 namespace StardriveModEditor.ViewModels
 {
@@ -20,12 +22,20 @@ namespace StardriveModEditor.ViewModels
             EditModCommand = new ActionCommand(EditMod);
         }
 
+        /// <summary>
+        /// Selects and loads up the editor for the mod selected. Might explode if things are missing.
+        /// </summary>
         private void EditMod()
         {
             Console.WriteLine("User selected to edit mod: " + Profile.Configuration.ModName);
             Console.WriteLine(Profile.Configuration.ModDescription);
-            string basePath = "C:/Program Files/Steam/steamapps/common/StarDrive/Mods";
-            ModBrowserViewModel.instance.ModProfiles.Add(new ModBrowserProfileViewModel(new ModProfile(basePath + "/Combined Arms.xml", basePath + "/Combined Arms")));
+            Console.WriteLine("Mod config path: " + Profile.Configuration.Path);
+            Console.WriteLine("Mod directory path: " + Profile.DirectoryPath);
+
+            //Create the mainEditorView, then 
+            MainEditorView mainEditorView = new MainEditorView(Profile);
+            mainEditorView.Show();
+            ModBrowser.Instance.Close();
         }
     }
 }

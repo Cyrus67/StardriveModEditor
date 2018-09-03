@@ -12,7 +12,7 @@ namespace StardriveModEditor.ViewModels
 {
     class ModBrowserViewModel : BaseViewModel
     {
-        public static ModBrowserViewModel instance;
+        public static ModBrowserViewModel Instance;
 
         #region Public Properties
 
@@ -40,47 +40,56 @@ namespace StardriveModEditor.ViewModels
 
         public ModBrowserViewModel()
         {
-            instance = this;
+            Instance = this;
 
             //Load directory path from settings.
-            GameDirectoryPath = Properties.Settings.Default.GameDirectoryPath;
+            gameDirectoryPath = Properties.Settings.Default.GameDirectoryPath;
 
             //Init the dialog.
             openModDialog = new VistaFolderBrowserDialog
             {
-                Description = "Choose game directory:",
+                Description = "Choose game mod directory:",
                 UseDescriptionForTitle = true
             };
 
-            //Add open dialog command.
+            //Add open dialog command. So it actually links and does it.
             OpenDirectoryExplorerCommand = new ActionCommand(OpenDirectoryExplorer);
 
-            //Fetch the mod profiles. If the directory is a thing.
-            string targetDirPath = GameDirectoryPath + @"\Mods";
-            Console.WriteLine(targetDirPath);
-            if (Directory.Exists(targetDirPath))
-            {
-                ModProfiles = new ObservableCollection<ModBrowserProfileViewModel>(DirectoryExplorer.DetectMods(targetDirPath)
-                                                                                    .Select(profile => { return new ModBrowserProfileViewModel(profile); }));
-            }
-            
-
+            //Loads any mod profiles from the default path.
+            LoadModProfiles(GameDirectoryPath);
         }
 
+        /// <summary>
+        /// Opens the vista folder dialog so folks can find and select their game directory.
+        /// </summary>
         private void OpenDirectoryExplorer()
         {
-            //Shows dialog, will be true if path selected.
+            //Shows dialog, will be true if path selected. Blocking call.
             if (openModDialog.ShowDialog() == true)
             {
+                //Save the choice as the new default, then reload mods.
                 GameDirectoryPath = openModDialog.SelectedPath;
+                LoadModProfiles(GameDirectoryPath);
             }
         }
         
-
-        private void LoadModProfiles()
+        /// <summary>
+        /// Opens all mod profiles that are valid inside the directory given. Doesn't add the \Mods folder for you.
+        /// </summary>
+        /// <param name="directoryPath">Directory to load from...</param>
+        private void LoadModProfiles(string directoryPath)
         {
-            ModProfiles = new ObservableCollection<ModBrowserProfileViewModel>(DirectoryExplorer.DetectMods(GameDirectoryPath + @"\Mods\")
+            //Fetch the mod profiles. If the directory is a thing.
+            if (Directory.Exists(directoryPath))
+            {
+                ModProfiles = new ObservableCollection<ModBrowserProfileViewModel>(DirectoryExplorer.DetectMods(directoryPath)
                                                                                 .Select(profile => { return new ModBrowserProfileViewModel(profile); }));
+            }
+            else
+            {
+                //Get the empty profile list.
+                ModProfiles = new ObservableCollection<ModBrowserProfileViewModel>();
+            }
         }
     }
 }

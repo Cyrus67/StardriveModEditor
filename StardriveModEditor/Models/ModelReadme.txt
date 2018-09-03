@@ -3,7 +3,7 @@ Each model is just public properties. NO METHODS OR OTHER SHENANIGANS!
 There are a couple attributes that are important to ensure proper XML serialization!
 [XmlIgnore] will ignore the property during serialization both ways.
 [CustomXMLIgnore] will ignore the property if it is not changed from the default (more later)
-[CustomDefaultValue] will change the default value of the property for serialization purposes.
+[CustomDefaultValue(value)] will change the default value of the property for serialization purposes.
 [XmlElement("ElementName")] will change the serialized tag name.
 [XmlRoot("RootName")] will set the root name different from class name.
 
